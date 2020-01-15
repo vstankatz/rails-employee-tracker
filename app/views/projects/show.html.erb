@@ -1,0 +1,12 @@
+<h1>Division: <%= @division.name %></h1>
+
+<%if @division.employees.any?%>
+<ul>
+  <%@division.employees.each do |employee|%>
+  <li><%= link_to employee.name, employee_path(employee)%></li>
+</ul>
+<%end%>
+<%else%>
+<p>No employees to display.</p>
+<%end%>
+<p><%= link_to "Create new employee", new_division_employee_path %></p>
