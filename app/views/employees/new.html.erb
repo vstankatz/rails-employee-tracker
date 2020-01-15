@@ -7,7 +7,7 @@
   <input type="hidden" id="division_id" name="employee[division_id]" value='<%="#{params[:division_id]}"%>'>
   <%f.text_field :name%>
 <% else %>
-<select name="division_id">
+<select name="employee[division_id]">
    <%= @divisions.each do |division| %>
      <option value="<%= division.id %>"><%= division.name %></option>
    <% end %>

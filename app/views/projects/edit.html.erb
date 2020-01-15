@@ -2,5 +2,12 @@
 <%=form_for @project do |f|%>
 <%=f.label :Name%>
 <%=f.text_field :name%>
-<%=f.submit%>
-<%end%>
+<%= f.label :employees %><br />
+<% for employee in Employee.all %>
+<%= check_box_tag "[employee_ids][]", employee.id, @project.employees.include?(employee) %>
+<%=h employee.name %><br />
+<% end %>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
