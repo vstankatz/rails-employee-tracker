@@ -29,6 +29,19 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+    if params[:employee_ids]
+      employees = params[:employee_ids].map { |id| Employee.find(id.to_i) }
+      @project.employees.each do |employee|
+        if employees.exclude?(employee)
+          @project.employees.delete(employee)
+        end
+      end
+      employees.each do |employee|
+        if @project.employees.exclude?(employee)
+          @project.employees << employee
+        end
+      end
+    end
     if @project.update(project_params)
       redirect_to projects_path
     else

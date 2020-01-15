@@ -1,3 +1,4 @@
+
 class EmployeesController < ApplicationController
   def index
     @employees = Employee.all
@@ -22,6 +23,7 @@ class EmployeesController < ApplicationController
   def edit
     @employee = Employee.find(params[:id])
     @divisions = Division.all
+    @projects = Project.all
     render :edit
   end
 
@@ -32,6 +34,19 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
+    if params[:project_ids]
+      projects = params[:project_ids].map { |id| Project.find(id.to_i) }
+      @employee.projects.each do |project|
+        if projects.exclude?(project)
+          @employee.projects.delete(project)
+        end
+      end
+      projects.each do |project|
+        if @employee.projects.exclude?(project)
+          @employee.projects << project
+        end
+      end
+    end
     if @employee.update(employee_params)
       redirect_to employees_path
     else
