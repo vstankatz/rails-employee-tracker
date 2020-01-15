@@ -4,9 +4,13 @@
 <ul>
   <%@division.employees.each do |employee|%>
   <li><%= link_to employee.name, employee_path(employee)%></li>
+  <%end%>
 </ul>
-<%end%>
 <%else%>
 <p>No employees to display.</p>
 <%end%>
+<p><%= link_to "Edit division", edit_division_path(@division)%></p>
+<p><%= link_to "Delete division", division_path(@division),
+  :data => {:confirm => "Are you sure?",
+  :method => "delete"} %></p>
 <p><%= link_to "Create new employee", new_division_employee_path(@division) %></p>

@@ -1,10 +1,11 @@
-<%if @divisions.any?%>
+<%if @projects.any?%>
+<br>
 <ul>
-  <%@divisions.each do |division|%>
-  <li><%= link_to division.name, division_path(division)%></li>
+  <%@projects.each do |project|%>
+  <li><%= link_to project.name, project_path(project)%></li>
+<%end%>
 </ul>
-<%end%>
 <%else%>
-<p>No divisions to display.</p>
+<p>No projects to display.</p>
 <%end%>
-<p><%= link_to "Create new division", new_division_path %></p>
+<p><%= link_to "Create new project", new_project_path %></p>

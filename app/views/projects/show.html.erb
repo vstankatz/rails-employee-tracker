@@ -1,12 +1,16 @@
-<h1>Division: <%= @division.name %></h1>
+<h1>Project: <%= @project.name %></h1>
 
-<%if @division.employees.any?%>
+<%if @project.employees.any?%>
+<br>
 <ul>
-  <%@division.employees.each do |employee|%>
+  <%@project.employees.each do |employee|%>
   <li><%= link_to employee.name, employee_path(employee)%></li>
+  <%end%>
 </ul>
-<%end%>
 <%else%>
 <p>No employees to display.</p>
 <%end%>
-<p><%= link_to "Create new employee", new_division_employee_path %></p>
+<p><%= link_to "Edit project", edit_project_path(@project)%></p>
+<p><%= link_to "Delete project", project_path(@project),
+  :data => {:confirm => "Are you sure?",
+  :method => "delete"} %></p>

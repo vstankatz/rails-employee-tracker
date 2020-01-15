@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :divisions do
     resources :employees
   end
-  resource :employees
-  resource :projects
+  resources :employees
+  resources :projects
 end
